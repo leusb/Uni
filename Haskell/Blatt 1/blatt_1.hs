@@ -58,12 +58,15 @@ bedroht x y color board = board x y /= color && board x y /= ' '
 -- = - Aufgabe c)
 -- = -
 
+-- gueltigerZug x1 y1 x2 y2 board = not (bedroht x2 y2 (board x1 x2) board)
 
-gueltigerZug x1 y1 x2 y2 board = istZugValide x1 y1 x2 y2 &&
-  not (bedroht x2 y2 (board x1 x2) board) &&
-  not (bedroht x2 y2 (board x1 y1) board) &&
-  and [coord > 0 | coord <- [x1,x2,y1,y2]] &&
-  x1 < 6 && x2 < 6 && y1 < 5 && y2 <5
+
+gueltigerZug x1 y1 x2 y2 board = 
+  istZugValide x1 y1 x2 y2 && --Zug valide
+  not (bedroht x2 y2 (board x1 x2) board)&& -- not threat
+  not (board x1 y1 == board x2 y2) && -- not the same color
+  x1 < 6 && x2 < 6 && y1 < 5 && y2 <5 && -- field size not exceeded 
+  and [coord > 0 | coord <- [x1,x2,y1,y2]] -- field size not falling below 1
 
 
 
