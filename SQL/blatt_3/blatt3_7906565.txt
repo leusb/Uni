@@ -34,4 +34,4 @@ select eingwpatient.patnr, patient.name, eingwpatient.stationid, station.name, e
 
 /*%%1g%%*/
 /* g) */ select name, gebdat, pnr  from mitarbeiter where date_format(gebdat, '%m-%d') in (select date_format(gebdat, '%m-%d') from mitarbeiter group by gebdat having count(gebdat)>2) order by pnr asc;
-/* ich konnte bereits die richtigen Daten mit einem select statement finden. Allerdings schaffe ich es in der Kürze der Zeit leider nicht mehr, die pnr werte jeweils noch in die spalte gleicherGeburtstag Wie zu bringen. Vielleicht gibt es ja für das finden der richtigen Werte Teilpunkte... :)*/
+/* needs to be fixed*/
