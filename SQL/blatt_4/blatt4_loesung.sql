@@ -77,7 +77,9 @@ select
     (preis - preis_alternativ) as Preisunterschied,
     ((preis - preis_alternativ) * dosierung) as Ersparnis
 from medikament_vergleich alt, verschreibt
-where verschreibt.name = alt.name;
+where 
+preis > preis_alternativ and 
+verschreibt.name = alt.name;
 
 
 
