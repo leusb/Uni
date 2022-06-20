@@ -3,7 +3,8 @@
 /* a) */
 select name, produzent, preis 
 from medikament
-where name like '%mittel%' and name not like '%kopf%'
+where produzent = ("Hexal" or "Bayer") and
+name like '%mittel%' and name not like '%kopf%'
 order by preis desc;
 
 /*%%1b%%*/
@@ -60,7 +61,7 @@ where ort = "Frankfurt" and (plz = 15230 or plz = 15232 or plz = 15234 or plz = 
 /* 2b) */
 update medikament
 set preis = preis + 3
-where produzent = "bayer" and preis >= 10.00;
+where produzent = "Bayer" and preis >= 10.00;
 
 /*%%2c%%*/
 /* 2c) */

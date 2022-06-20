@@ -3,8 +3,11 @@
 /* a) */
 select name, produzent, preis 
 from medikament
-where name like '%mittel%' and name not like '%kopf%'
+where produzent = ("Hexal" or "Bayer") and
+name like '%mittel%' and name not like '%kopf%'
 order by preis desc;
+/* alternativ: where produzent in ('Hexal', 'Bayer') and  */
+
 
 /*%%1b%%*/
 /* b) */
@@ -69,17 +72,11 @@ where ort = "Frankfurt" and (plz = 15230 or plz = 15232 or plz = 15234 or plz = 
 /* 2b) */
 update medikament
 set preis = preis + 3
-where produzent = "bayer" and preis >= 10.00;
+where produzent = "Bayer" and preis >= 10.00;
+/* alternativ: where produzent like 'Bayer */
 
 /*%%2c%%*/
 /* 2c) */
 alter table arzt
 	add column mobile varchar(20) after pnr;
-
-/* Anmerkung: Als Datentyp habe ich hier varchar gewählt, da zB bei der Länderkennung von Mobilnummern ein "+" in der Nummer auftauchen kann
-Int als Datentyp wäre somit die Falsche Wahl. Auch die Länge lässt sich kürzer fassen. So darf eine natioanle Mobilfunknummer nicht länger als
-13 Zeichen und Internationale nicht länger als 15 Zeichen sein. 
-(Quelle Bundesnetzagentur: https://www.bundesnetzagentur.de/SharedDocs/Downloads/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Nummerierung/Rufnummern/NP_Nummernraum.pdf?__blob=publicationFile&v=4) 
-Ich habe 20 gewählt, da möglicherweise bindestriche oder zusätzliche Leerezeichen
-eingetragen werden könnten   */
     
